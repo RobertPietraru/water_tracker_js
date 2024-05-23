@@ -29,12 +29,17 @@ function getWaterDrankToday() {
 function getProgress() {
   const drankToday = getWaterDrankToday();
 
-  return (drankToday * 100) / ((finalGoal ?? defaultGoal) == 0 ? defaultGoal : finalGoal);
+  return (
+    (drankToday * 100) /
+    ((finalGoal ?? defaultGoal) == 0 ? defaultGoal : finalGoal)
+  );
 }
 
 function initialize() {
   const drankToday = getWaterDrankToday();
-  const progress = (drankToday * 100) / ((finalGoal ?? defaultGoal) == 0 ? defaultGoal : finalGoal);
+  const progress =
+    (drankToday * 100) /
+    ((finalGoal ?? defaultGoal) == 0 ? defaultGoal : finalGoal);
 
   bar.style.width = progress + "%";
   bar.innerHTML = (progress >= 100 ? 100 : progress.toPrecision(2)) + "%";
@@ -47,7 +52,7 @@ function initialize() {
 
 initialize();
 
-function movebar() {
+function renderBar() {
   const progress = getProgress();
 
   if (getWaterDrankToday() < finalGoal) {
@@ -65,13 +70,58 @@ function add_bottles() {
   const entries = JSON.parse(entries_string);
   entries.push({ amount: 0.5, time: new Date().toISOString() });
   localStorage.setItem("entries", JSON.stringify(entries));
-  movebar();
+  renderBar();
+  renderEntries();
 }
 function add_glasses() {
   if (bar.innerHTML === "100%") return;
   const entries_string = localStorage.getItem("entries") ?? "[]";
   const entries = JSON.parse(entries_string);
-  entries.push({ amount: 0.25, time: (new Date()).toISOString() });
+  entries.push({ amount: 0.25, time: new Date().toISOString() });
   localStorage.setItem("entries", JSON.stringify(entries));
-  movebar();
+  renderBar();
+  renderEntries();
+}
+
+function renderEntries() {
+  const entries_string = localStorage.getItem("entries") ?? "[]";
+  const entries = JSON.parse(entries_string);
+
+  const entriesList = document.getElementById("drinks");
+  entriesList.innerHTML = `<tr>
+  <th>Amount</th> 
+  <th>Time</th>
+  <th></th>
+
+  </tr>`;
+  /// today
+
+  entries
+    .filter(
+      (entry) =>
+        new Date(entry.time).toDateString() === new Date().toDateString()
+    )
+    .forEach((entry) => {
+      entriesList.innerHTML += `
+      <tr>
+        <td>${entry.amount}L</td>
+        <td>${new Date(entry.time).toLocaleTimeString()}</td>
+        <td> <button onclick="deleteEntry('${entry.time}')">Delete</button></td>
+      </tr>
+      
+      `;
+    });
+}
+renderBar();
+renderEntries();
+
+function deleteEntry(time) {
+  const entries_string = localStorage.getItem("entries") ?? "[]";
+  const entries = JSON.parse(entries_string);
+
+  const newEntries = entries.filter((entry) => entry.time !== time);
+
+  localStorage.setItem("entries", JSON.stringify(newEntries));
+  renderEntries();
+  renderBar();
 }
