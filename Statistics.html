@@ -1,17 +1,108 @@
 <!DOCTYPE html>
 <html>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-  <link rel="stylesheet" href="styles.css" />
-  <body>
-    <div class="statistics">
-      <h1 id="title">Your Statistics</h1>
-      <h2>This is how much water you drank:</h2>
-      <h3>Last week</h3>
-      <canvas id="weekly" style="width: 100%; max-width: 600px"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<link rel="stylesheet" href="styles.css" />
 
-      <h3>Last month</h3>
-      <canvas id="monthly" style="width: 100%; max-width: 600px"></canvas>
-    </div>
-    <script src="index.js"></script>
-  </body>
+<body>
+  <nav><a href="WaterTracker.html" style="text-decoration: none; color: black;">
+      <h1> Water Tracker</h1>
+    </a></nav>
+  <div class="statistics">
+    <h1 id="title">Your Statistics</h1>
+    <h2>This is how much water you drank:</h2>
+    <h3>Last week</h3>
+    <canvas id="weekly" style="width: 100%; max-width: 600px"></canvas>
+    <h3>Last month</h3>
+    <canvas id="monthly" style="width: 100%; max-width: 600px"></canvas>
+
+    <button onclick="clearStorage()">Remove everything</button>
+  </div>
+  <script>
+    
+    const daysInTheWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const today = new Date();
+    const oneWeekAgo = new Date(today - 7 * 24 * 60 * 60 * 1000);
+    const entries = JSON.parse(localStorage.getItem("entries")) || [];
+    const waterLastWeek = [];
+
+    const values = [
+      {
+        day: "Sun",
+        amount: 0,
+      },
+    ]
+    values.length = 0;
+    for (let i = 0; i < entries.length; i++) {
+      entries[i].time = new Date(entries[i].time);
+      console.log(entries[i].time);
+    }
+
+    for (let day = oneWeekAgo; day <= today; day.setDate(day.getDate() + 1)) {
+
+      const d = new Date(day);
+      const startOfDay = new Date(d);
+      startOfDay.setHours(0, 0, 0, 0)
+      const endOfDay = new Date(d);
+      endOfDay.setHours(23, 59, 59, 999)
+
+      const todaysEntries = entries.filter(
+        (entry) => entry.time >= startOfDay && entry.time <= endOfDay
+      );
+      console.log(startOfDay, endOfDay, todaysEntries);
+      const totalWater = todaysEntries.reduce((acc, entry) => acc + entry.amount, 0);
+      const dayOfWeek = new Date(d).getDay();
+
+      values.push({
+        day: daysInTheWeek[dayOfWeek],
+        amount: totalWater,
+      })
+
+    }
+
+    const labelsMonth = ["Week 1", "Week 2", "Week 3", "Week 4"];
+    const waterLastMonth = [12, 12, 124, 123];
+
+    new Chart("weekly", {
+      type: "line",
+      data: {
+        labels: values.map((value) => value.day),
+        datasets: [
+          {
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "blue",
+            data: values.map((value) => value.amount),
+          },
+        ],
+      },
+      options: {
+        legend: { display: false },
+      },
+    });
+
+    new Chart("monthly", {
+      type: "line",
+      data: {
+        labels: labelsMonth,
+        datasets: [
+          {
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "blue",
+            data: waterLastMonth,
+          },
+        ],
+      },
+      options: {
+        legend: { display: false },
+      },
+    });
+
+    function clearStorage() {
+      localStorage.clear();
+      window.location.reload();
+    }
+  </script>
+</body>
+
 </html>
