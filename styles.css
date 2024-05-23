@@ -126,3 +126,17 @@
 #calculate{
     background-color: rgb(50, 150, 175);
 }
+nav{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0;
+}
+#flexbox {
+    display: flex;
+   gap: 50px; 
+}
+a{
+    font-size: 30px;
+}

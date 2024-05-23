@@ -9,13 +9,18 @@
 </head>
 
 <body>
-    <nav><a href="WaterTracker.html" style="text-decoration: none; color: black;">
-            <h1> Water Tracker</h1>
+    <nav><a href="index.html" style="text-decoration: none; color: black;">
+            Water Tracker
+        </a>
+
+        <div id="flexbox">
             <a href="Add_Water.html"><button type="button" id="add">Add Water</button></a>
-        <a href="Statistics.html"><button type="button" id="statistics">Statistics</button></a>
-        <a href="SetGoals.html"><button type="button" id="goals">Your Goals</button></a>
-        </a></nav>
-        
+            <a href="Statistics.html"><button type="button" id="statistics">Statistics</button></a>
+            <a href="SetGoals.html"><button type="button" id="goals">Your Goals</button></a>
+        </div>
+
+    </nav>
+
     <main style="display: flex; flex-direction: column; align-items: center;">
         <h1 id="title">Add Water</h1>
         <p class="instructions">How much water did you drink<br>since your last entry?</p>
@@ -41,7 +46,7 @@
         <table id="drinks" border>
 
         </table>
-        <script src="add_wate.js"></script>
+        <script src="add_water.js"></script>
     </main>
 
 </body>
