@@ -5,27 +5,19 @@
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>AddWater</title>
 </head>
 
 <body>
     <nav>
-        <a href="index.html" style="text-decoration: none; color: black;">
-            Water Tracker
-        </a>
+        <a href="index.html" style="text-decoration: none; color: black;">Water Tracker</a>
 
-        <div id="flexbox desktop-only">
+        <div id="flexbox">
             <a href="Add_Water.html"><button type="button" id="add">Add Water</button></a>
             <a href="Statistics.html"><button type="button" id="statistics">Statistics</button></a>
             <a href="SetGoals.html"><button type="button" id="goals">Your Goals</button></a>
         </div>
-
-        <button style="border: none;" onclick="onExpand()" class="mobile-only">
-            <span class="material-icons md-36">menu</span>
-        </button>
-
     </nav>
 
     <main style="display: flex; flex-direction: column; align-items: center;">
@@ -59,15 +51,6 @@
 </body>
 
 
-<script>
-    function onExpand(){
-        var flexbox = document.getElementById("flexbox");
-        if(flexbox.style.display === "none"){
-            flexbox.style.display = "flex";
-        } else {
-            flexbox.style.display = "none";
-        }
-    }
+<script> </script>
 
-</script>
 </html>

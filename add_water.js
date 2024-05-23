@@ -72,31 +72,30 @@ function add_bottles() {
   localStorage.setItem("entries", JSON.stringify(entries));
   const waterDrankToday = getWaterDrankToday();
   if (waterDrankToday >= finalGoal) {
-      if (!window.Notification) {
-          console.log("Browser does not support notifications.");
+    if (!window.Notification) {
+      console.log("Browser does not support notifications.");
+    } else {
+      if (Notification.permission === "granted") {
+        var notify = new Notification("You did it!", {
+          body: "Congrats!",
+        });
       } else {
-          if (Notification.permission === "granted") {
+        Notification.requestPermission()
+          .then(function (p) {
+            if (p === "granted") {
+              // show notification here
               var notify = new Notification("You did it!", {
-                  body: "Congrats!",
+                body: "Congrats",
               });
-          } else {
-              Notification.requestPermission()
-                  .then(function (p) {
-                      if (p === "granted") {
-                          // show notification here
-                          var notify = new Notification("You did it!", {
-                              body: "Congrats",
-                          });
-                      } else {
-                          console.log("User blocked notifications.");
-                      }
-                  })
-                  .catch(function (err) {
-                      console.error(err);
-                  });
-          }
+            } else {
+              console.log("User blocked notifications.");
+            }
+          })
+          .catch(function (err) {
+            console.error(err);
+          });
       }
-  
+    }
   }
 
   renderBar();
@@ -124,6 +123,9 @@ function renderEntries() {
 
   </tr>`;
   /// today
+  if (entries.length === 0) {
+    entriesList.innerHTML='';
+  }
 
   entries
     .filter(
