@@ -9,41 +9,54 @@
 </head>
 
 <body>
-    <nav><a href="WaterTracker.html" style="text-decoration: none; color: black;"> <h1> Water Tracker</h1> </a></nav>
+    <nav><a href="WaterTracker.html" style="text-decoration: none; color: black;">
+            <h1> Water Tracker</h1>
+        </a></nav>
     <h1 id="title">Set Your Goals!</h1>
     <p id="information">
         How many liters of water do<br />you want to drink every day?
     </p>
     <div id="setgoal">
-        <input type="number" max="6" min="1" step="0.25" value="2" id="goal" />
+        <input type="number" min="0" step="0.25" id="goal" />
         <button onclick="sendGoal()" id="done">Done!</button>
     </div>
     <div>
-    <button onclick="notify()" id="setnotif">Notify me!</button>
+        <button onclick="notify()" id="setnotif">Notify me!</button>
     </div>
-    <div id="help">
+    <div id="help" >
         <p>Don't know how much water you should drink? No problem, we will help you!</p>
         <p>Enter your weight (kg):</p><input type="number" id="weight">
         <button type="button" onclick="calculate()" id="calculate">Calculate</button>
         <p id="res"></p>
     </div>
     <script>
-        var result=0;
-        function calculate(){
-            var weight=document.getElementById('weight').value;
-            result=weight*35/1000;
-            document.getElementById('res').innerText="something around "+result +"L";
+        var weight = localStorage.getItem("weight");
+
+        document.getElementById("goal").value = localStorage.getItem("finalgoal");
+        document.getElementById("weight").value = fromWaterToWeight(localStorage.getItem("finalgoal")).toFixed(2);
+
+        const LastDrink = setInterval(Reminder, 1000);
+
+        function fromWaterToWeight(water) {
+            return water * 1000 / 35;
+        }
+
+        var result = 0;
+        function calculate() {
+            var weight = document.getElementById('weight').value;
+            result = (weight * 35 / 1000).toPrecision(2);
+            document.getElementById('res').innerText = "something around " + result + "L";
             var finalgoal = result;
             localStorage.setItem("finalgoal", finalgoal);
+            document.getElementById("goal").value = localStorage.getItem("finalgoal");
 
         }
 
-        document.getElementById("goal").value = localStorage.getItem("finalgoal");
-        const LastDrink = setInterval(Reminder, 1000);
+
         function sendGoal() {
             var finalgoal = document.getElementById("goal").value;
             localStorage.setItem("finalgoal", finalgoal);
-            window.location.href = "WaterTracker.html";
+            document.getElementById("weight").value = fromWaterToWeight(localStorage.getItem("finalgoal")).toFixed(2);
         }
 
         var TimeSince = 0;

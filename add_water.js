@@ -39,6 +39,10 @@ function initialize() {
   bar.style.width = progress + "%";
   bar.innerHTML = (progress >= 100 ? 100 : progress.toPrecision(2)) + "%";
   waterdrank = (progress * finalGoal) / 100;
+  if (progress >= 100) {
+    bar.style.width = "100%";
+    bar.innerHTML = "100%";
+  }
 }
 
 initialize();
@@ -48,7 +52,7 @@ function movebar() {
 
   if (getWaterDrankToday() < finalGoal) {
     bar.style.width = progress + "%";
-    bar.innerHTML = progress.toPrecision(2) + "%";
+    bar.innerHTML = progress.toFixed(2) + "%";
   } else {
     bar.style.width = "100%";
     bar.innerHTML = "100%";
