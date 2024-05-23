@@ -1,142 +1,151 @@
 * {
-    font-family: cursive;
-    background-color:rgb(150, 250, 250);
-    box-sizing: border-box;
+  font-family: cursive;
+  background-color: rgb(150, 250, 250);
+  box-sizing: border-box;
 }
 
 .statistics {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 #title {
-    font-size: 40px;
-    text-align: center;
-    color:rgb(50, 75, 150);
+  font-size: 40px;
+  text-align: center;
+  color: rgb(50, 75, 150);
 }
-.motto{
-    text-align: center;
+.motto {
+  text-align: center;
 }
-#menu {
-    display: grid;
-    text-align: center;
-    grid-template-columns: auto auto auto;
-    gap: 7%;
-    margin: 5% 25%;
+
+#add,
+#statistics,
+#goals {
+  font-size: 20px;
+  background-color: rgb(100, 150, 200);
+  width: 125px;
+  text-align: center;
+  box-shadow: 5px 5px;
 }
-#add, #statistics, #goals{
-    font-size: 20px;
-    background-color: rgb(100, 150, 200);
-    width: 125px;
-    text-align: center;
-    box-shadow: 5px 5px;
+.instructions {
+  text-align: center;
 }
-.instructions{
-    text-align: center;
+#Bottles > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 5px 5px;
 }
-#Bottles > img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    box-shadow: 5px 5px;
+#Glasses > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 5px 5px;
 }
-#Glasses > img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    box-shadow: 5px 5px;
-}
-#Glasses, #Bottles {
-    padding: 0;
-    margin: 0;
-    width: 100px;
-    height: 100px;
+#Glasses,
+#Bottles {
+  padding: 0;
+  margin: 0;
+  width: 100px;
+  height: 100px;
 }
 #measure {
-    display: flex;
-    justify-content: center;
-    gap: 5%;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  text-align: center;
 }
-#information{
-    display: flex;
-    justify-content: center;
-    gap: 10%;
+#information {
+  display: flex;
+  justify-content: center;
+  gap: 10%;
 }
-.imgfill{
-    width: 35px;
-    height: 80px;
+.imgfill {
+  width: 35px;
+  height: 80px;
 }
-.imgfill2{
-    width: 35px;
-    height: 50px;
+.imgfill2 {
+  width: 35px;
+  height: 50px;
 }
-#addwater{
-    display: flex;
-    flex-direction: row;
-    gap: 5%;
-    justify-content: center;
+#addwater {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  justify-content: center;
 }
 #goal {
-    width: 55px;
-    height: 35px;
-    font-size: 15px;
-    text-align: center;
-    background-color: rgb(50, 150, 175);
+  width: 55px;
+  height: 35px;
+  font-size: 15px;
+  text-align: center;
+  background-color: rgb(50, 150, 175);
 }
-#progress{
-    width: 50%;
-    height: 30px;
-    background-color:azure;
+#progress {
+  width: 50%;
+  height: 30px;
+  background-color: azure;
 }
-#Bar{
-    width: 0%;
-    height: 30px;
-    background-color:rgb(50, 150, 175);
+#Bar {
+  width: 0%;
+  height: 30px;
+  background-color: rgb(50, 150, 175);
 }
 .navbar {
-    display: flex;
-    flex-direction: row;
-    padding: 10px 10px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px 10px;
 }
-#setgoal{
-    display: flex;
-    justify-content: center;
-    gap: 1.25%;
+#setgoal {
+  display: flex;
+  justify-content: center;
+  gap: 1.25%;
 }
-#done{
-    width: 55px;
-    height: 35px;
-    font-size: 15px;
-    text-align: center;
-    background-color: rgb(50, 150, 175);
-
+#done {
+  width: 55px;
+  height: 35px;
+  font-size: 15px;
+  text-align: center;
+  background-color: rgb(50, 150, 175);
 }
-#setnotif{
-    display: block;
-    margin: 10px auto ;
-    padding: 10px;
-    background-color: rgb(50, 150, 175);
+#setnotif {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: rgb(50, 150, 175);
 }
-#weight{
-    background-color: rgb(50, 150, 175);
+#weight {
+  background-color: rgb(50, 150, 175);
 }
-#calculate{
-    background-color: rgb(50, 150, 175);
+#calculate {
+  background-color: rgb(50, 150, 175);
 }
-nav{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 0;
+nav {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0;
 }
 #flexbox {
-    display: flex;
-   gap: 50px; 
+  display: flex;
+  gap: 50px;
 }
-a{
-    font-size: 30px;
+a {
+  font-size: 30px;
 }
+
+@media (max-width: 700px) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+
+@media (min-width: 700px) {
+    .mobile-only {
+      display: none;
+    }
+  }

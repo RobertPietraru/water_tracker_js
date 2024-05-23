@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WaterTracker</title>
 </head>
+
 <body>
     <h1 id="title">WaterTracker</h1>
     <p class="motto">9 out of 10 proficient<br> waterdrinkers recommend this app</p>
-    <div id="menu">
+    <div class="menu">
         <a href="Add_Water.html"><button type="button" id="add">Add Water</button></a>
         <a href="Statistics.html"><button type="button" id="statistics">Statistics</button></a>
         <a href="SetGoals.html"><button type="button" id="goals">Your Goals</button></a>
     </div>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            gap: 25px;
+        }
+    </style>
 </body>
+
 </html>

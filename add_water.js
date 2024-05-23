@@ -70,6 +70,35 @@ function add_bottles() {
   const entries = JSON.parse(entries_string);
   entries.push({ amount: 0.5, time: new Date().toISOString() });
   localStorage.setItem("entries", JSON.stringify(entries));
+  const waterDrankToday = getWaterDrankToday();
+  if (waterDrankToday >= finalGoal) {
+      if (!window.Notification) {
+          console.log("Browser does not support notifications.");
+      } else {
+          if (Notification.permission === "granted") {
+              var notify = new Notification("You did it!", {
+                  body: "Congrats!",
+              });
+          } else {
+              Notification.requestPermission()
+                  .then(function (p) {
+                      if (p === "granted") {
+                          // show notification here
+                          var notify = new Notification("You did it!", {
+                              body: "Congrats",
+                          });
+                      } else {
+                          console.log("User blocked notifications.");
+                      }
+                  })
+                  .catch(function (err) {
+                      console.error(err);
+                  });
+          }
+      }
+  
+  }
+
   renderBar();
   renderEntries();
 }
